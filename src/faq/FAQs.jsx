@@ -18,7 +18,7 @@ const FAQs = () => {
   const [loading, setLoading] = useState(false);
   const [responseMessage, setResponseMessage] = useState('');
 
-  // Validation function
+
   const validate = () => {
     let tempErrors = {};
     let isValid = true;
@@ -69,14 +69,14 @@ const FAQs = () => {
           department: formValues.department || 'N/A',
         };
 
-        // Make POST resquest to the backend API
+        // POST resquest to the backend API
         const response = await axios.post('https://car-rental-okvm.onrender.com/contact-us', finalFormData);
 
-        // Handle successful response
+        // Handling successful response
         setResponseMessage('Message sent successfully!');
         setLoading(false);
 
-        // Clear form fields after successful submission
+        // Clearing form fields after successful submission
         setFormValues({
           yourName: '',
           emailAddress: '',
@@ -86,7 +86,7 @@ const FAQs = () => {
         });
 
       } catch (error) {
-        // Handle error response
+        // Handling error response
         setResponseMessage('Failed to send the message. Please try again.');
         setLoading(false);
       }

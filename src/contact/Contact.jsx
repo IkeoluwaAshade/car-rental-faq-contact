@@ -3,16 +3,16 @@ import axios from 'axios';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
-    yourName: '',   // Changed from 'name'
-    emailAddress: '', // Changed from 'email'
-    subject: '',     // Added subject
+    yourName: '',   
+    emailAddress: '', 
+    subject: '',    
     department: '',
-    message: '',   // Changed from 'question'
+    message: '',  
   });
 
   const [errors, setErrors] = useState({});
-  const [loading, setLoading] = useState(false);  // To manage loading state
-  const [responseMessage, setResponseMessage] = useState('');  // To display success/error message
+  const [loading, setLoading] = useState(false); 
+  const [responseMessage, setResponseMessage] = useState(''); 
 
   const validate = () => {
     let tempErrors = {};
@@ -54,23 +54,23 @@ const Contact = () => {
     e.preventDefault();
     if (validate()) {
       setLoading(true);
-      setResponseMessage('');  // Clear previous messages
+      setResponseMessage('');  
 
       try {
-        // Set default department to 'N/A' if not provided
+        
         const finalFormData = {
           ...formData,
           department: formData.department || 'N/A',
         };
 
-        // Make POST request to the backend API
+        
         const response = await axios.post('https://car-rental-okvm.onrender.com/contact-us', finalFormData);
 
-        // Handle successful response
+        
         setResponseMessage('Message sent successfully!');
         setLoading(false);
 
-        // Clear form fields after successful submission
+        
         setFormData({
           yourName: '',
           emailAddress: '',
@@ -80,7 +80,6 @@ const Contact = () => {
         });
 
       } catch (error) {
-        // Handle error response
         setResponseMessage('Failed to send the message. Please try again.');
         setLoading(false);
       }
@@ -106,7 +105,7 @@ const Contact = () => {
                   <label>Your Name (*)</label> <br />
                   <input 
                     type="text" 
-                    name="yourName"  // Changed name
+                    name="yourName"  
                     value={formData.yourName}
                     onChange={handleChange} 
                     className='w-full h-[45px] rounded-2xl p-4' 
@@ -118,7 +117,7 @@ const Contact = () => {
                   <label>Your Email (*)</label> <br />
                   <input 
                     type="text" 
-                    name="emailAddress"  // Changed name
+                    name="emailAddress"  
                     value={formData.emailAddress}
                     onChange={handleChange} 
                     className='w-full h-[45px] rounded-2xl p-4' 
@@ -132,7 +131,7 @@ const Contact = () => {
                 <label>Subject (*)</label> <br />
                 <input 
                   type="text" 
-                  name="subject"  // Added subject input
+                  name="subject"  
                   value={formData.subject}
                   onChange={handleChange} 
                   className='w-full h-[45px] rounded-2xl p-4' 
@@ -160,7 +159,7 @@ const Contact = () => {
               <div className="message leading-loose w-full">
                 <label>Your Message (*)</label> <br />
                 <textarea 
-                  name="message"  // Changed name
+                  name="message" 
                   rows="7" 
                   value={formData.message}
                   onChange={handleChange} 
@@ -173,7 +172,7 @@ const Contact = () => {
                 <button 
                   type="submit" 
                   className='bg-customYellow text-black w-[120px] h-7 p-6 rounded-3xl font-bold flex justify-center items-center text-xl'
-                  disabled={loading}  // Disable button when loading
+                  disabled={loading}  
                 >
                   {loading ? 'Sending...' : 'Submit'}   
                 </button>
